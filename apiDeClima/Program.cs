@@ -50,6 +50,7 @@ class Program
         else
         {
             Console.WriteLine("Opção inválida");
+            await ExibirOpcoesDoMenu();
         }
     }
 
