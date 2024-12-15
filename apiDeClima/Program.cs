@@ -10,7 +10,9 @@ class Program
     public static async Task Main(string[] args)
     {
         opcoes.Add(1, new MenuPesquisaCidade());
+        opcoes.Add(2, new MenuPesquisaCidadeComLatitude());
         opcoes.Add(-1, new MenuSair());
+
         Program program = new Program();
         await program.ExibirOpcoesDoMenu();
     }
@@ -35,6 +37,7 @@ class Program
     {
         ExibirLogo();
         Console.WriteLine("\nDigite 1 para Pesquisa o clima de cidade");
+        Console.WriteLine("Digite 2 para pesquisar o clima de acordo com latitude e longitude");
         Console.WriteLine("Digite -1 para sair");
          
         Console.Write("\nDigite a sua opção: ");

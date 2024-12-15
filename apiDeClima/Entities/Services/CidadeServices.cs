@@ -10,10 +10,27 @@ namespace apiDeClima.Entities.Services
 {
     internal class CidadeServices
     {
-        public async Task<Cidade> Integracao(string cidade)
+        public async Task<Cidade> Integracao(string cidade = null, string latitude = null, string longitude = null)
         {
             HttpClient client = new HttpClient();
-            var response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid=735c5dbe0e335e47fd925e80875c0b61&units=metric&lang=pt");
+            HttpResponseMessage response;
+
+            if ( !string.IsNullOrWhiteSpace(cidade))  { 
+                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid=735c5dbe0e335e47fd925e80875c0b61&units=metric&lang=pt");
+            }
+            else if (!string.IsNullOrWhiteSpace(latitude) && !string.IsNullOrWhiteSpace(longitude))
+            {
+                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid=735c5dbe0e335e47fd925e80875c0b61&units=metric&lang=pt");
+            }
+            else
+            {
+                Console.WriteLine("Erro: Nenhuma informação válida foi fornecida.");
+                return new Cidade
+                {
+                    Verificacao = true
+                };
+            }
+
             var jsonString = await response.Content.ReadAsStringAsync();
 
             var json = JObject.Parse(jsonString);
