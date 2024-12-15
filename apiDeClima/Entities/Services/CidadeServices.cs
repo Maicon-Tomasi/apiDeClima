@@ -16,11 +16,11 @@ namespace apiDeClima.Entities.Services
             HttpResponseMessage response;
 
             if ( !string.IsNullOrWhiteSpace(cidade))  { 
-                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid=735c5dbe0e335e47fd925e80875c0b61&units=metric&lang=pt");
+                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?q={cidade}&appid={CHAVE API}&units=metric&lang=pt");
             }
             else if (!string.IsNullOrWhiteSpace(latitude) && !string.IsNullOrWhiteSpace(longitude))
             {
-                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid=735c5dbe0e335e47fd925e80875c0b61&units=metric&lang=pt");
+                 response = await client.GetAsync($"https://api.openweathermap.org/data/2.5/weather?lat={latitude}&lon={longitude}&appid={CHAVE API}&units=metric&lang=pt");
             }
             else
             {
